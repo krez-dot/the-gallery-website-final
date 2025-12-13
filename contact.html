@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact The Gallery</title>
+    <meta
+      name="description"
+      content="Contact The Gallery for art submissions, exhibition inquiries, partnerships, and visit information. Submit your artwork to be featured in our collection." />
+    <meta
+      name="keywords"
+      content="contact The Gallery, art submission, exhibition inquiry, art partnership, visit gallery, artist submission form, contact form" />
+    <meta name="author" content="The Gallery" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Contact The Gallery - Get In Touch & Submit Art" />
+    <meta
+      property="og:description"
+      content="Contact The Gallery for art submissions, exhibition inquiries, and partnerships. Submit your artwork to be featured." />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400&family=Manrope:wght@400;600&family=Onest:wght@700&display=swap"
+      rel="stylesheet" />
+    <link rel="icon" href="images/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="styles/contactstyle.css" />
+    <script src="javascript/contact.js"></script>
+  </head>
+  <body>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="overlay" id="overlay"></div>
+    <div class="header"></div>
+    <div class="main-container">
+      <div class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+          <div class="sidebar-title">THE GALLERY</div>
+          <div class="sidebar-divider"></div>
+          <div class="nav-item" data-href="homepage.html">
+            <div class="nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path
+                  fill="#443627"
+                  d="M341.8 72.6C329.5 61.2 310.5 61.2 298.3 72.6L74.3 280.6C64.7 289.6 61.5 303.5 66.3 315.7C71.1 327.9 82.8 336 96 336L112 336L112 512C112 547.3 140.7 576 176 576L464 576C499.3 576 528 547.3 528 512L528 336L544 336C557.2 336 569 327.9 573.8 315.7C578.6 303.5 575.4 289.5 565.8 280.6L341.8 72.6zM304 384L336 384C362.5 384 384 405.5 384 432L384 528L256 528L256 432C256 405.5 277.5 384 304 384z" />
+              </svg>
+            </div>
+            <div class="nav-text">Home</div>
+          </div>
+          <div class="nav-item active" data-href="contact.html">
+            <div class="nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path
+                  fill="#443627"
+                  d="M448 112C456.8 112 464 119.2 464 128L464 512C464 520.8 456.8 528 448 528L160 528C151.2 528 144 520.8 144 512L144 128C144 119.2 151.2 112 160 112L448 112zM160 64C124.7 64 96 92.7 96 128L96 512C96 547.3 124.7 576 160 576L448 576C483.3 576 512 547.3 512 512L512 128C512 92.7 483.3 64 448 64L160 64zM304 312C334.9 312 360 286.9 360 256C360 225.1 334.9 200 304 200C273.1 200 248 225.1 248 256C248 286.9 273.1 312 304 312zM272 352C227.8 352 192 387.8 192 432C192 440.8 199.2 448 208 448L400 448C408.8 448 416 440.8 416 432C416 387.8 380.2 352 336 352L272 352zM576 144C576 135.2 568.8 128 560 128C551.2 128 544 135.2 544 144L544 208C544 216.8 551.2 224 560 224C568.8 224 576 216.8 576 208L576 144zM560 256C551.2 256 544 263.2 544 272L544 336C544 344.8 551.2 352 560 352C568.8 352 576 344.8 576 336L576 272C576 263.2 568.8 256 560 256zM576 400C576 391.2 568.8 384 560 384C551.2 384 544 391.2 544 400L544 464C544 472.8 551.2 480 560 480C568.8 480 576 472.8 576 464L576 400z" />
+              </svg>
+            </div>
+            <div class="nav-text">Contact</div>
+          </div>
+          <div class="nav-item" data-href="about.html">
+            <div class="nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path
+                  fill="#443627"
+                  d="M96 96C60.7 96 32 124.7 32 160L32 480C32 515.3 60.7 544 96 544L544 544C579.3 544 608 515.3 608 480L608 160C608 124.7 579.3 96 544 96L96 96zM176 352L240 352C284.2 352 320 387.8 320 432C320 440.8 312.8 448 304 448L112 448C103.2 448 96 440.8 96 432C96 387.8 131.8 352 176 352zM152 256C152 225.1 177.1 200 208 200C238.9 200 264 225.1 264 256C264 286.9 238.9 312 208 312C177.1 312 152 286.9 152 256zM392 208L504 208C517.3 208 528 218.7 528 232C528 245.3 517.3 256 504 256L392 256C378.7 256 368 245.3 368 232C368 218.7 378.7 208 392 208zM392 304L504 304C517.3 304 528 314.7 528 328C528 341.3 517.3 352 504 352L392 352C378.7 352 368 341.3 368 328C368 314.7 378.7 304 392 304z" />
+              </svg>
+            </div>
+            <div class="nav-text">About</div>
+          </div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="contact-container">
+          <div class="contact-image">
+            <img src="images/girlallu.png" alt="Art Gallery" />
+            <div class="image-caption">
+              If you would like to get your <strong>art be
+                published</strong><br />make sure to contact us just by
+              providing your details in
+              the form!
+            </div>
+          </div>
+          <div class="contact-form">
+            <div class="form-title">
+              <h2>Get in touch</h2>
+              <p>We are here for you! How can we help?</p>
+            </div>
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="name">Name</label><input
+                  type="text"
+                  id="name"
+                  class="form-control"
+                  placeholder="Your name"
+                  required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label><input
+                  type="email"
+                  id="email"
+                  class="form-control"
+                  placeholder="Your email"
+                  required />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label><textarea
+                  id="message"
+                  class="form-control"
+                  placeholder="Your message"
+                  required></textarea>
+              </div>
+              <button type="submit" class="submit-btn">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer-title">THE GALLERY</div>
+      <div class="copyright">©2025, All rights reserved.</div>
+    </footer>
+  </body>
+</html>

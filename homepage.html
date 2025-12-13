@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Primary Meta Tags -->
+    <title>The Gallery</title>
+    <meta
+      name="description"
+      content="Explore our curated collection of art from Renaissance to Contemporary, featuring works by famous painters like Da Vinci, Van Gogh, Monet. Virtual  experience." />
+    <meta
+      name="keywords"
+      content="art gallery, paintings, contemporary art, renaissance art, modern art, photography, Leonardo da Vinci, Van Gogh, Monet, art exhibition" />
+    <meta name="author" content="The Gallery" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta
+      property="og:title"
+      content="The Gallery - Art Collection & Exhibitions" />
+    <meta
+      property="og:description"
+      content="Explore our curated collection of art from Renaissance to Contemporary. Virtual art gallery experience." />
+    <link rel="canonical" href="https://krez-dot.github.io/the-gallery/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400&display=swap"
+      rel="stylesheet" />
+    <link rel="icon" href="images/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="styles/homepage.css" />
+    <script src="javascript/homepage.js"></script>
+  </head>
+  <body>
+    <div class="audio-controls">
+      <button
+        class="audio-toggle-btn"
+        id="audioToggleBtn"
+        aria-label="Toggle audio player">
+        <svg class="audio-icon" viewBox="0 0 24 24" id="audioIcon">
+          <path
+            d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+          <path d="M16 7.96v8.08c1.21-.91 2-2.38 2-4.04s-.79-3.13-2-4.04z" />
+          <path d="M3 9v6h4l5 5V4L7 9H3z" />
+        </svg>
+        <svg class="muted-icon" viewBox="0 0 24 24" style="display: none">
+          <path
+            d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+        </svg>
+      </button>
+
+      <!-- Expanded player (hidden by default) -->
+      <div
+        class="audio-expanded-panel"
+        id="audioExpandedPanel"
+        style="display: none">
+        <div class="audio-player">
+          <div class="track-info">
+            <div class="track-title">Gymnopédie No. 1 • Erik Satie</div>
+            <div class="track-details">Track 1/3 • 1888</div>
+          </div>
+
+          <div class="expanded-track-controls">
+            <button class="expanded-track-btn" id="prevTrack">
+              <svg viewBox="0 0 24 24" width="16" height="16">
+                <path fill="currentColor" d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+              </svg>
+            </button>
+
+            <button class="expanded-audio-btn" id="audioToggleExpanded">
+              <svg class="audio-icon" viewBox="0 0 24 24">
+                <path
+                  d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+                <path
+                  d="M16 7.96v8.08c1.21-.91 2-2.38 2-4.04s-.79-3.13-2-4.04z" />
+                <path d="M3 9v6h4l5 5V4L7 9H3z" />
+              </svg>
+              <svg class="muted-icon" viewBox="0 0 24 24" style="display: none">
+                <path
+                  d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+              </svg>
+            </button>
+
+            <button class="expanded-track-btn" id="nextTrack">
+              <svg viewBox="0 0 24 24" width="16" height="16">
+                <path
+                  fill="currentColor"
+                  d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="volume-controls">
+            <div class="volume-slider-container">
+              <input
+                type="range"
+                class="volume-slider"
+                id="volumeControl"
+                min="0"
+                max="100"
+                value="30" />
+              <div class="volume-level">30%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Update your audio element if needed -->
+    <audio id="backgroundAudio" loop preload="auto">
+      <source src="gymnopedie-no1.mp3" type="audio/mpeg" />
+      <source src="gymnopedie-no2.mp3" type="audio/mpeg" />
+      <source src="gymnopedie-no3.mp3" type="audio/mpeg" />
+    </audio>
+    <div class="page-container">
+      <!-- Mobile Menu Toggle -->
+      <div class="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <!-- Mobile Overlay -->
+      <div class="mobile-overlay"></div>
+      <!-- Top Header -->
+      <div class="top-header"></div>
+      <!-- Sidebar Navigation -->
+      <div class="sidebar">
+        <div class="sidebar-content">
+          <div class="sidebar-title">THE GALLERY</div>
+          <div class="sidebar-divider"></div>
+          <!-- Navigation Items -->
+          <div class="nav-item active">
+            <div class="nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path
+                  fill="#443627"
+                  d="M341.8 72.6C329.5 61.2 310.5 61.2 298.3 72.6L74.3 280.6C64.7 289.6 61.5 303.5 66.3 315.7C71.1 327.9 82.8 336 96 336L112 336L112 512C112 547.3 140.7 576 176 576L464 576C499.3 576 528 547.3 528 512L528 336L544 336C557.2 336 569 327.9 573.8 315.7C578.6 303.5 575.4 289.5 565.8 280.6L341.8 72.6zM304 384L336 384C362.5 384 384 405.5 384 432L384 528L256 528L256 432C256 405.5 277.5 384 304 384z" />
+              </svg>
+            </div>
+            <div class="nav-text">Home</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path
+                  fill="#443627"
+                  d="M576 320C576 320.9 576 321.8 576 322.7C575.6 359.2 542.4 384 505.9 384L408 384C381.5 384 360 405.5 360 432C360 435.4 360.4 438.7 361 441.9C363.1 452.1 367.5 461.9 371.8 471.8C377.9 485.6 383.9 499.3 383.9 513.8C383.9 545.6 362.3 574.5 330.5 575.8C327 575.9 323.5 576 319.9 576C178.5 576 63.9 461.4 63.9 320C63.9 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320zM192 352C192 334.3 177.7 320 160 320C142.3 320 128 334.3 128 352C128 369.7 142.3 384 160 384C177.7 384 192 369.7 192 352zM192 256C209.7 256 224 241.7 224 224C224 206.3 209.7 192 192 192C174.3 192 160 206.3 160 224C160 241.7 174.3 256 192 256zM352 160C352 142.3 337.7 128 320 128C302.3 128 288 142.3 288 160C288 177.7 302.3 192 320 192C337.7 192 352 177.7 352 160zM448 256C465.7 256 480 241.7 480 224C480 206.3 465.7 192 448 192C430.3 192 416 206.3 416 224C416 241.7 430.3 256 448 256z" />
+              </svg>
+            </div>
+            <div class="nav-text">Painter</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                <path
+                  fill="#443627"
+                  d="M373.5 27.1c15-17.2 36.7-27.1 59.6-27.1 43.6 0 79 35.4 79 79 0 22.8-9.9 44.6-27.1 59.6L283.7 313.8 273 303 209 239 198.2 228.3 373.5 27.1zM161.1 259C162 260 188 286 239 337l13.9 13.9-17.1 74.2c-3.9 17.1-16.9 30.7-33.8 35.4l-169.8 47.5 92.3-92.3c1.2 .1 2.3 .2 3.5 .2 17.7 0 32-14.3 32-32s-14.3-32-32-32-32 14.3-32 32c0 1.2 .1 2.4 .2 3.5L3.9 479.8 51.5 310c4.7-16.9 18.3-29.9 35.4-33.8L161.1 259z" />
+              </svg>
+            </div>
+            <div class="nav-text">Contemporary</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                <path
+                  fill="#443627"
+                  d="M352.9 21.2L308 66.1 445.9 204 490.8 159.1C504.4 145.6 512 127.2 512 108s-7.6-37.6-21.2-51.1L455.1 21.2C441.6 7.6 423.2 0 404 0s-37.6 7.6-51.1 21.2zM274.1 100L58.9 315.1c-10.7 10.7-18.5 24.1-22.6 38.7L.9 481.6c-2.3 8.3 0 17.3 6.2 23.4s15.1 8.5 23.4 6.2l127.8-35.5c14.6-4.1 27.9-11.8 38.7-22.6L412 237.9 274.1 100z" />
+              </svg>
+            </div>
+            <div class="nav-text">Modern</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path
+                  fill="#443627"
+                  d="M512.5 74.3L291.1 222C262 241.4 243.5 272.9 240.5 307.3C302.8 320.1 351.9 369.2 364.8 431.6C399.3 428.6 430.7 410.1 450.1 381L597.7 159.5C604.4 149.4 608 137.6 608 125.4C608 91.5 580.5 64 546.6 64C534.5 64 522.6 67.6 512.5 74.3zM320 464C320 402.1 269.9 352 208 352C146.1 352 96 402.1 96 464C96 467.9 96.2 471.8 96.6 475.6C98.4 493.1 86.4 512 68.8 512L64 512C46.3 512 32 526.3 32 544C32 561.7 46.3 576 64 576L208 576C269.9 576 320 525.9 320 464z" />
+              </svg>
+            </div>
+            <div class="nav-text">Renaissance</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path
+                  fill="#443627"
+                  d="M213.1 128.8L202.7 160L128 160C92.7 160 64 188.7 64 224L64 480C64 515.3 92.7 544 128 544L512 544C547.3 544 576 515.3 576 480L576 224C576 188.7 547.3 160 512 160L437.3 160L426.9 128.8C420.4 109.2 402.1 96 381.4 96L258.6 96C237.9 96 219.6 109.2 213.1 128.8zM320 256C373 256 416 299 416 352C416 405 373 448 320 448C267 448 224 405 224 352C224 299 267 256 320 256z" />
+              </svg>
+            </div>
+            <div class="nav-text">Photography</div>
+          </div>
+          <div class="nav-item" data-href="contact.html">
+            <div class="nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path
+                  fill="#443627"
+                  d="M448 112C456.8 112 464 119.2 464 128L464 512C464 520.8 456.8 528 448 528L160 528C151.2 528 144 520.8 144 512L144 128C144 119.2 151.2 112 160 112L448 112zM160 64C124.7 64 96 92.7 96 128L96 512C96 547.3 124.7 576 160 576L448 576C483.3 576 512 547.3 512 512L512 128C512 92.7 483.3 64 448 64L160 64zM304 312C334.9 312 360 286.9 360 256C360 225.1 334.9 200 304 200C273.1 200 248 225.1 248 256C248 286.9 273.1 312 304 312zM272 352C227.8 352 192 387.8 192 432C192 440.8 199.2 448 208 448L400 448C408.8 448 416 440.8 416 432C416 387.8 380.2 352 336 352L272 352zM576 144C576 135.2 568.8 128 560 128C551.2 128 544 135.2 544 144L544 208C544 216.8 551.2 224 560 224C568.8 224 576 216.8 576 208L576 144zM560 256C551.2 256 544 263.2 544 272L544 336C544 344.8 551.2 352 560 352C568.8 352 576 344.8 576 336L576 272C576 263.2 568.8 256 560 256zM576 400C576 391.2 568.8 384 560 384C551.2 384 544 391.2 544 400L544 464C544 472.8 551.2 480 560 480C568.8 480 576 472.8 576 464L576 400z" />
+              </svg>
+            </div>
+            <div class="nav-text">Contact</div>
+          </div>
+          <div class="nav-item" data-href="about.html">
+            <div class="nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path
+                  fill="#443627"
+                  d="M96 96C60.7 96 32 124.7 32 160L32 480C32 515.3 60.7 544 96 544L544 544C579.3 544 608 515.3 608 480L608 160C608 124.7 579.3 96 544 96L96 96zM176 352L240 352C284.2 352 320 387.8 320 432C320 440.8 312.8 448 304 448L112 448C103.2 448 96 440.8 96 432C96 387.8 131.8 352 176 352zM152 256C152 225.1 177.1 200 208 200C238.9 200 264 225.1 264 256C264 286.9 238.9 312 208 312C177.1 312 152 286.9 152 256zM392 208L504 208C517.3 208 528 218.7 528 232C528 245.3 517.3 256 504 256L392 256C378.7 256 368 245.3 368 232C368 218.7 378.7 208 392 208zM392 304L504 304C517.3 304 528 314.7 528 328C528 341.3 517.3 352 504 352L392 352C378.7 352 368 341.3 368 328C368 314.7 378.7 304 392 304z" />
+              </svg>
+            </div>
+            <div class="nav-text">About</div>
+          </div>
+        </div>
+      </div>
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Hero Section -->
+        <section class="section hero-section">
+          <img class="hero-image" src="images/default.jpg" alt="Gallery Hero" />
+          <h1 class="hero-title">THE GALLERY</h1>
+          <p class="hero-description">
+            <span>welcome to </span>
+            <span class="hero-description-bold">the gallery</span>
+            <span>— a space dedicated to celebrating creativity, emotion, and
+              vision. here, every artwork tells a story, inviting you to look
+              closer, feel deeper, and discover the connections between art and
+              life. whether you are an admirer, a collector, or simply curious,
+              we're glad you're here to explore and be inspired.</span>
+          </p>
+        </section>
+        <div class="click-tooltip" id="clickTooltip">
+          <span>Click images to view details</span>
+        </div>
+        <div class="section-divider"></div>
+        <!-- Famous Painters Section -->
+        <section class="section painters-section">
+          <h2 class="painters-title">Famous Painter</h2>
+          <div class="painters-container">
+            <div class="painter-card leonardo">
+              <img src="images/leonardo.png" alt="Leonardo Da Vinci" />
+              <div class="painter-name">Leonardo Da Vinci</div>
+              <div class="painter-bio">
+                Leonardo di ser Piero da Vinci was an Italian polymath of the
+                High Renaissance who was active as a painter, draughtsman,
+                engineer, scientist, theorist, sculptor, and architect.
+              </div>
+            </div>
+            <div class="painter-card van-gogh">
+              <img src="images/da vinsi.png" alt="Vincent Van Gogh" />
+              <div class="painter-name">Vincent Van Gogh</div>
+              <div class="painter-bio">
+                Vincent Willem van Gogh was a Dutch Post-Impressionist painter
+                who is among the most famous and influential figures in the
+                history of Western art.
+              </div>
+            </div>
+            <div class="painter-card monet">
+              <img src="images/claude ml gods.png" alt="Claude Monet" />
+              <div class="painter-name">Claude Monet</div>
+              <div class="painter-bio">
+                Oscar-Claude Monet was a French painter and founder of
+                Impressionism painting who is seen as a key precursor to
+                modernism, especially in his attempts to paint nature as he
+                perceived it.
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Image Modal/Popup -->
+        <div class="image-modal" id="imageModal">
+          <button class="modal-close" id="modalClose">&times;</button>
+          <div class="modal-content">
+            <img class="modal-img" id="modalImg" src alt />
+            <div class="modal-caption" id="modalCaption"></div>
+            <div class="modal-zoom-controls">
+              <button class="zoom-btn" id="zoomIn">+</button>
+              <button class="zoom-btn" id="zoomOut">-</button>
+              <button class="zoom-btn" id="zoomReset">↺</button>
+            </div>
+            <div class="modal-swipe-indicator">Swipe to navigate</div>
+          </div>
+          <div class="modal-loading" id="modalLoading" style="display: none">
+            Loading
+          </div>
+        </div>
+        <div class="section-divider"></div>
+        <!-- Contemporary Art Section -->
+        <div id="contemporary-art" class="section contemporary-art">
+          <div class="section-title contemporary-art-title">
+            Contemporary Art
+          </div>
+          <div class="art-section-container">
+            <!-- Julie Mehretu -->
+            <div class="artwork-group julie">
+              <img
+                class="artwork-img"
+                src="contemporary/julie.jpg"
+                alt="Everywhen by Julie Mehretu" />
+            </div>
+            <div class="artwork-info julie">
+              <span class="artwork-title">Julie Mehretu</span><br />
+              <span class="artwork-details">Everywhen<br />2021 - 2023</span>
+            </div>
+
+            <!-- Joan Snyder -->
+            <div class="artwork-group joan">
+              <img
+                class="artwork-img"
+                src="contemporary/joan.jpg"
+                alt="My August by Joan Snyder" />
+            </div>
+            <div class="artwork-info joan">
+              <span class="artwork-title">Joan Snyder</span><br />
+              <span class="artwork-details">My August<br />2023</span>
+            </div>
+
+            <!-- Julian Schnabel -->
+            <div class="artwork-group julian">
+              <img
+                class="artwork-img"
+                src="contemporary/julian.jpg"
+                alt="Portrait of Agnes Gund by Julian Schnabel" />
+            </div>
+            <div class="artwork-info julian">
+              <span class="artwork-title">Julian Schnabel</span><br />
+              <span class="artwork-details">Portrait of Agnes
+                Gund<br />2021</span>
+            </div>
+
+            <!-- Santiago Yahuarcani -->
+            <div class="artwork-group santiago">
+              <img
+                class="artwork-img"
+                src="contemporary/yamaguchi.jpg"
+                alt="Cosmovisión Huitoto by Santiago Yahuarcani" />
+            </div>
+            <div class="artwork-info santiago">
+              <span class="artwork-title">Santiago Yahuarcani</span><br />
+              <span class="artwork-details">Cosmovisión Huitoto<br />2022</span>
+            </div>
+
+            <!-- Julian Lethbridge -->
+            <div class="artwork-group lethbridge">
+              <img
+                class="artwork-img"
+                src="contemporary/letbrid.png"
+                alt="Carpenter's Square by Julian Lethbridge" />
+            </div>
+            <div class="artwork-info lethbridge">
+              <span class="artwork-title">Julian Lethbridge</span><br />
+              <span class="artwork-details">Carpenter's Square<br />2021</span>
+            </div>
+
+            <!-- Mark Grotjahn -->
+            <div class="artwork-group mark">
+              <img
+                class="artwork-img"
+                src="contemporary/Michael Armitage.png"
+                alt="(Circus No. 3 Face 44.20) by Mark Grotjahn" />
+            </div>
+            <div class="artwork-info mark">
+              <span class="artwork-title">Mark Grotjahn</span><br />
+              <span class="artwork-details">(Circus No. 3 Face
+                44.20)<br />2013</span>
+            </div>
+
+            <!-- Josh Smith -->
+            <div class="artwork-group josh">
+              <img
+                class="artwork-img"
+                src="contemporary/Mark Grotjahn.png"
+                alt="Artwork by Josh Smith" />
+            </div>
+            <div class="artwork-info josh">
+              <span class="artwork-title">Josh Smith</span><br />
+              <span class="artwork-details">Untitled<br />2013</span>
+            </div>
+
+            <!-- Michael Armitage -->
+            <div class="artwork-group michael">
+              <img
+                class="artwork-img"
+                src="contemporary/Josh Smith.png"
+                alt="Curfew (Likoni March 27 2020) by Michael Armitage" />
+            </div>
+            <div class="artwork-info michael">
+              <span class="artwork-title">Michael Armitage</span><br />
+              <span class="artwork-details">Curfew (Likoni March 27
+                2020)<br />2022</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Modern Art Section -->
+        <div id="modern-art" class="section modern-art">
+          <div class="section-title modern-art-title">Modern Art</div>
+          <div class="art-section-container">
+            <!-- Richard Paul Lohse -->
+            <div class="artwork-group richard">
+              <img
+                class="artwork-img"
+                src="modern/Richard Paul Lohse.png"
+                alt="Fifteen Systematic Color Rows by Richard Paul Lohse" />
+            </div>
+            <div class="artwork-info richard">
+              <span class="artwork-title">Richard Paul Lohse</span><br />
+              <span class="artwork-details">Fifteen Systematic Color
+                Rows<br />1950</span>
+            </div>
+
+            <!-- Jan Mauller -->
+            <div class="artwork-group jan">
+              <img
+                class="artwork-img"
+                src="modern/Jan Mauller.png"
+                alt="Faust, I by Jan Mauller" />
+            </div>
+            <div class="artwork-info jan">
+              <span class="artwork-title">Jan Mauller</span><br />
+              <span class="artwork-details">Faust, I<br />1956</span>
+            </div>
+
+            <!-- Raphael Soyer -->
+            <div class="artwork-group raphael">
+              <img
+                class="artwork-img"
+                src="modern/Rapahael Soyer.png"
+                alt="Seamstress by Raphael Soyer" />
+            </div>
+            <div class="artwork-info raphael">
+              <span class="artwork-title">Raphael Soyer</span><br />
+              <span class="artwork-details">Seamstress<br />1956</span>
+            </div>
+
+            <!-- Jane Wilson -->
+            <div class="artwork-group jane">
+              <img
+                class="artwork-img"
+                src="modern/Jane Wilson.png"
+                alt="The Open Scene by Jane Wilson" />
+            </div>
+            <div class="artwork-info jane">
+              <span class="artwork-title">Jane Wilson</span><br />
+              <span class="artwork-details">The Open Scene<br />1960</span>
+            </div>
+
+            <!-- Salvatore Scarpitta -->
+            <div class="artwork-group salvatore">
+              <img
+                class="artwork-img"
+                src="modern/Salvatore Scarpitta.png"
+                alt="Composition, I by Salvatore Scarpitta" />
+            </div>
+            <div class="artwork-info salvatore">
+              <span class="artwork-title">Salvatore Scarpitta</span><br />
+              <span class="artwork-details">Composition, I<br />1959</span>
+            </div>
+
+            <!-- Elmer Bischoff -->
+            <div class="artwork-group elmer">
+              <img
+                class="artwork-img"
+                src="modern/Elmer BIschoff.png"
+                alt="Girl Wading by Elmer Bischoff" />
+            </div>
+            <div class="artwork-info elmer">
+              <span class="artwork-title">Elmer Bischoff</span><br />
+              <span class="artwork-details">Girl Wading<br />1959</span>
+            </div>
+
+            <!-- Remedios Varo -->
+            <div class="artwork-group remedios">
+              <img
+                class="artwork-img"
+                src="modern/Remedios Varo.png"
+                alt="The Juggler (The Magician) by Remedios Varo" />
+            </div>
+            <div class="artwork-info remedios">
+              <span class="artwork-title">Remedios Varo</span><br />
+              <span class="artwork-details">The Juggler (The
+                Magician)<br />1956</span>
+            </div>
+
+            <!-- Jean Dubuffet -->
+            <div class="artwork-group jean">
+              <img
+                class="artwork-img"
+                src="modern/Jean Dubuffet.png"
+                alt="Head of a Girl by Jean Dubuffet" />
+            </div>
+            <div class="artwork-info jean">
+              <span class="artwork-title">Jean Dubuffet</span><br />
+              <span class="artwork-details">Head of a Girl from Assemblages
+                d'empreintes series<br />1954</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Renaissance Art Section -->
+        <div id="renaissance-art" class="section renaissance-art">
+          <div class="section-title renaissance-art-title">Renaissance Art</div>
+          <div class="art-section-container">
+            <!-- Use BOTH classes - old for CSS, new for semantics -->
+            <div class="artwork-group caravaggio-medusa botticelli-portrait">
+              <img
+                class="artwork-img"
+                src="renaissance/Idealized Portrait of a Lady (Portrait of Simonetta Vespucci as Nymph).png"
+                alt="Idealized Portrait of a Lady (Portrait of Simonetta Vespucci as Nymph) by Sandro Botticelli" />
+            </div>
+            <div class="artwork-info caravaggio-medusa botticelli-portrait">
+              <span class="artwork-title">Sandro Botticelli</span><br />
+              <span class="artwork-details">Idealized Portrait of a
+                Lady<br />1480</span>
+            </div>
+            <!-- Titian -->
+            <div class="artwork-group titian">
+              <img
+                class="artwork-img"
+                src="renaissance/Titian.png"
+                alt="Venus of Urbino by Titian" />
+            </div>
+            <div class="artwork-info titian">
+              <span class="artwork-title">Titian</span><br />
+              <span class="artwork-details">Venus of Urbino<br />1538</span>
+            </div>
+
+            <!-- Leonardo da Vinci -->
+            <div class="artwork-group leonardo-lady">
+              <img
+                class="artwork-img"
+                src="renaissance/Leonardo da Vinci.png"
+                alt="Lady with an Ermine by Leonardo da Vinci" />
+            </div>
+            <div class="artwork-info leonardo-lady">
+              <span class="artwork-title">Leonardo da Vinci</span><br />
+              <span class="artwork-details">Lady with an Ermine<br />1489</span>
+            </div>
+
+            <!-- Caravaggio - Supper at Emmaus -->
+            <div class="artwork-group caravaggio-supper">
+              <img
+                class="artwork-img"
+                src="renaissance/Caravaggio.png"
+                alt="Supper at Emmaus by Caravaggio" />
+            </div>
+            <div class="artwork-info caravaggio-supper">
+              <span class="artwork-title">Caravaggio</span><br />
+              <span class="artwork-details">Supper at Emmaus<br />1601</span>
+            </div>
+
+            <!-- Leonardo da Vinci - Ginevra de' Benci -->
+            <div class="artwork-group leonardo-ginevra">
+              <img
+                class="artwork-img"
+                src="renaissance/Leonardo da Vinci 1.png"
+                alt="Ginevra de' Benci by Leonardo da Vinci" />
+            </div>
+            <div class="artwork-info leonardo-ginevra">
+              <span class="artwork-title">Leonardo da Vinci</span><br />
+              <span class="artwork-details">Ginevra de' Benci<br />1474</span>
+            </div>
+
+            <!-- Pieter Bruegel the Elder -->
+            <div class="artwork-group pieter">
+              <img
+                class="artwork-img"
+                src="renaissance/Pieter Bruegel the Elder.png"
+                alt="The Dutch Proverbs by Pieter Bruegel the Elder" />
+            </div>
+            <div class="artwork-info pieter">
+              <span class="artwork-title">Pieter Bruegel the Elder</span><br />
+              <span class="artwork-details">The Dutch Proverbs<br />1559</span>
+            </div>
+
+            <!-- Raphael -->
+            <div class="artwork-group raphael-renaissance">
+              <img
+                class="artwork-img"
+                src="renaissance/Raphael.png"
+                alt="Madonna of the Goldfinch by Raphael" />
+            </div>
+            <div class="artwork-info raphael-renaissance">
+              <span class="artwork-title">Raphael</span><br />
+              <span class="artwork-details">Madonna of the Goldfinch<br />1505 -
+                1506</span>
+            </div>
+
+            <!-- Caravaggio - Cupid as Victor -->
+            <div class="artwork-group caravaggio-cupid">
+              <img
+                class="artwork-img"
+                src="renaissance/Caravaggio 1.png"
+                alt="Cupid as Victor by Caravaggio" />
+            </div>
+            <div class="artwork-info caravaggio-cupid">
+              <span class="artwork-title">Caravaggio</span><br />
+              <span class="artwork-details">Cupid as Victor<br />1601</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Photography Section -->
+        <div id="photography" class="section photography">
+          <div class="section-title photography-title">Photography</div>
+          <div class="art-section-container">
+            <!-- Lena Koval -->
+            <div class="artwork-group lena">
+              <img
+                class="artwork-img"
+                src="photography/Lena Koval.png"
+                alt="Eclipsed Horizons by Lena Koval" />
+            </div>
+            <div class="artwork-info lena">
+              <span class="artwork-title">Lena Koval</span><br />
+              <span class="artwork-details">Eclipsed Horizons</span>
+            </div>
+
+            <!-- Miles Grantt -->
+            <div class="artwork-group miles">
+              <img
+                class="artwork-img"
+                src="photography/Miles Grantt.png"
+                alt="Nighttime Reverie by Miles Grantt" />
+            </div>
+            <div class="artwork-info miles">
+              <span class="artwork-title">Miles Grantt</span><br />
+              <span class="artwork-details">Nighttime Reverie</span>
+            </div>
+
+            <!-- Emilie Möri -->
+            <div class="artwork-group emilie">
+              <img
+                class="artwork-img"
+                src="photography/Emilie Möri.png"
+                alt="Fuerte N°02 by Emilie Möri" />
+            </div>
+            <div class="artwork-info emilie">
+              <span class="artwork-title">Emilie Möri</span><br />
+              <span class="artwork-details">Fuerte N°02 Photograph</span>
+            </div>
+
+            <!-- Igor Vitomirov -->
+            <div class="artwork-group igor">
+              <img
+                class="artwork-img"
+                src="photography/Igor Vitomirov.png"
+                alt="8142 Photograph by Igor Vitomirov" />
+            </div>
+            <div class="artwork-info igor">
+              <span class="artwork-title">Igor Vitomirov</span><br />
+              <span class="artwork-details">8142 Photograph</span>
+            </div>
+
+            <!-- Kristin Hart -->
+            <div class="artwork-group kristin">
+              <img
+                class="artwork-img"
+                src="photography/Kristin Hart.png"
+                alt="Lean My Heart by Kristin Hart" />
+            </div>
+            <div class="artwork-info kristin">
+              <span class="artwork-title">Kristin Hart</span><br />
+              <span class="artwork-details">Lean My Heart, Blue Ridge Mountains
+                Photograph</span>
+            </div>
+          </div>
+        </div>
+        <!-- Footer -->
+        <footer class="footer">
+          <div class="footer-logo">THE GALLERY</div>
+          <div class="footer-copyright">©2025, All rights reserved.</div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

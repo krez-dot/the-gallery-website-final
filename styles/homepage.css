@@ -2854,6 +2854,15 @@ body::before {
     bottom: 15px;
     margin-bottom: -50px;
   }
+  /* FIX FOR FOOTER - Add this */
+  .footer {
+    width: 100vw;
+    position: relative;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: var(--spacing-lg) 0;
+  }
+
   body {
     overflow-x: hidden;
   }

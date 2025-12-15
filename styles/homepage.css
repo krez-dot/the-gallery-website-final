@@ -2479,6 +2479,9 @@ body::before {
     bottom: 15px;
     margin-bottom: -50px;
   }
+  * {
+    overflow-x: hidden;
+  }
 }
 
 /* Very small mobile (max-width: 360px) */

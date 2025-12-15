@@ -434,7 +434,6 @@ function initImageModal() {
 
   if (!modal.element) {
     console.error("Image modal element not found!");
-    // Create modal if it doesn't exist
     createModal();
     return;
   }
@@ -447,145 +446,48 @@ function initImageModal() {
   // Collect all images
   collectClickableImages();
 
-  // Setup for both desktop and mobile, but with different behaviors
+  // Setup for both desktop and mobile
   if (isDesktop) {
-    // Desktop: Add hover effects and visual feedback
     setupDesktopImageInteractions();
   } else {
-    // Mobile: Just make images clickable without hover effects
     setupMobileImageInteractions();
   }
 
   setupModalEvents();
 
-  function setupDesktopImageInteractions() {
-    console.log("Setting up desktop image interactions...");
-
-    allImages.forEach((imageData) => {
-      const img = imageData.element;
-
-      // Make clickable
-      img.style.cursor = "pointer";
-      img.setAttribute("tabindex", "0");
-      img.setAttribute("role", "button");
-      img.setAttribute("aria-label", `View ${img.alt} in larger detail`);
-
-      // Add hover effects
-      if (imageData.type === "painter") {
-        img.addEventListener("mouseenter", () => {
-          img.style.transform = "scale(1.02)";
-          img.style.transition = "transform 0.3s ease";
-        });
-
-        img.addEventListener("mouseleave", () => {
-          img.style.transform = "scale(1)";
-        });
-      } else if (imageData.type === "artwork") {
-        img.addEventListener("mouseenter", () => {
-          img.style.transform = "scale(1.01)";
-          img.style.opacity = "0.95";
-          img.style.transition = "transform 0.3s ease, opacity 0.3s ease";
-        });
-
-        img.addEventListener("mouseleave", () => {
-          img.style.transform = "scale(1)";
-          img.style.opacity = "1";
-        });
-      }
-
-      // Click listener
-      img.addEventListener("click", function (e) {
-        console.log("Image clicked on desktop:", img.alt);
-        e.stopPropagation();
-        handleImageClick(this);
-      });
-    });
-  }
-
-  function setupMobileImageInteractions() {
-    console.log("Setting up mobile image interactions...");
-
-    allImages.forEach((imageData) => {
-      const img = imageData.element;
-
-      // Make clickable
-      img.style.cursor = "pointer";
-      img.setAttribute("tabindex", "0");
-      img.setAttribute("role", "button");
-      img.setAttribute("aria-label", `Tap to view ${img.alt}`);
-
-      // Touch/click listener for mobile
-      img.addEventListener("click", function (e) {
-        console.log("Image tapped on mobile:", img.alt);
-        e.stopPropagation();
-        handleImageClick(this);
-      });
-
-      // Also support touch events for better mobile UX
-      img.addEventListener(
-        "touchstart",
-        function (e) {
-          // Add touch feedback
-          this.style.opacity = "0.8";
-        },
-        { passive: true }
-      );
-
-      img.addEventListener(
-        "touchend",
-        function (e) {
-          this.style.opacity = "1";
-        },
-        { passive: true }
-      );
-    });
-  }
-
-  function handleImageClick(imgElement) {
-    console.log("handleImageClick called for:", imgElement.src);
-
-    // Add click animation (desktop only)
-    if (isDesktop) {
-      imgElement.classList.add("image-clicked");
-      setTimeout(() => {
-        imgElement.classList.remove("image-clicked");
-      }, 600);
-    }
-
-    // Find this image in our collection
-    const clickedSrc = imgElement.src;
-    currentImageIndex = allImages.findIndex(
-      (imgData) => imgData.src === clickedSrc
-    );
-
-    console.log("Found at index:", currentImageIndex);
-
-    if (currentImageIndex !== -1) {
-      openModal(currentImageIndex);
-    } else {
-      console.error("Image not found in collection!");
-      openSingleImage(imgElement);
-    }
-  }
-
+  // FIXED: Mobile image collection function
   function collectClickableImages() {
     allImages = [];
     console.log("Collecting all clickable images...");
 
-    // Painter cards - check for both desktop and mobile versions
-    const painterImages = document.querySelectorAll(
-      ".painter-card img, .painters-carousel-container .painter-card img"
+    // First check for mobile carousel images
+    const mobilePainterImages = document.querySelectorAll(
+      ".painters-carousel-container .painter-card img"
     );
-    console.log("Found painter images:", painterImages.length);
+    const mobileArtworkImages = document.querySelectorAll(
+      ".art-carousel-container .artwork-img"
+    );
 
+    // Then check for desktop images
+    const desktopPainterImages = document.querySelectorAll(
+      ".painters-container .painter-card img"
+    );
+    const desktopArtworkImages = document.querySelectorAll(
+      ".art-section-container .artwork-img"
+    );
+
+    // Choose which set to use based on viewport
+    const painterImages = window.innerWidth <= 1024 ? mobilePainterImages : desktopPainterImages;
+    const artworkImages = window.innerWidth <= 1024 ? mobileArtworkImages : desktopArtworkImages;
+
+    console.log(`Mobile: ${window.innerWidth <= 1024}, Painter images: ${painterImages.length}, Artwork images: ${artworkImages.length}`);
+
+    // Process painter images
     painterImages.forEach((img, index) => {
-      // Find the closest card container
-      const card = img.closest(".painter-card");
+      const card = img.closest(".painter-card, .carousel-slide");
       if (!card) return;
 
-      const name =
-        card.querySelector(".painter-name")?.textContent ||
-        `Painter ${index + 1}`;
+      const name = card.querySelector(".painter-name")?.textContent || `Painter ${index + 1}`;
       const bio = card.querySelector(".painter-bio")?.textContent || "";
 
       allImages.push({
@@ -598,31 +500,17 @@ function initImageModal() {
       });
     });
 
-    // Artwork images - check for both grid and carousel versions
-    const artworkImages = document.querySelectorAll(
-      ".artwork-img, .art-carousel-container .artwork-img"
-    );
-    console.log("Found artwork images:", artworkImages.length);
-
+    // Process artwork images
     artworkImages.forEach((img, index) => {
-      // Try to find artwork info
+      const slideOrGroup = img.closest(".carousel-slide, .artwork-group");
       let title = img.alt;
       let details = "";
 
-      // Check if there's a sibling .artwork-info element
-      const parent = img.closest(".artwork-group, .carousel-slide");
-      if (parent) {
-        const infoElement =
-          parent.querySelector(".artwork-info") ||
-          parent.nextElementSibling?.classList.contains("artwork-info")
-            ? parent.nextElementSibling
-            : null;
-
+      if (slideOrGroup) {
+        const infoElement = slideOrGroup.querySelector(".artwork-info");
         if (infoElement) {
-          title =
-            infoElement.querySelector(".artwork-title")?.textContent || img.alt;
-          details =
-            infoElement.querySelector(".artwork-details")?.textContent || "";
+          title = infoElement.querySelector(".artwork-title")?.textContent || img.alt;
+          details = infoElement.querySelector(".artwork-details")?.innerHTML || "";
         }
       }
 
@@ -652,6 +540,129 @@ function initImageModal() {
     console.log("Total images collected:", allImages.length);
   }
 
+  // FIXED: Simplified mobile image setup
+  function setupMobileImageInteractions() {
+    console.log("Setting up mobile image interactions...");
+
+    allImages.forEach((imageData, index) => {
+      const img = imageData.element;
+
+      // Clean up any existing event listeners
+      const newImg = img.cloneNode(true);
+      img.parentNode.replaceChild(newImg, img);
+      
+      // Add touch/click event to the new element
+      newImg.style.cursor = "pointer";
+      newImg.setAttribute("tabindex", "0");
+      newImg.setAttribute("role", "button");
+      newImg.setAttribute("aria-label", `Tap to view ${newImg.alt}`);
+      newImg.setAttribute("data-image-index", index); // Add index for easy lookup
+      
+      // Store reference
+      imageData.element = newImg;
+
+      // Simple click/touch handler
+      newImg.addEventListener("click", function(e) {
+        console.log("Mobile image tapped:", this.alt);
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Get index from data attribute
+        const index = parseInt(this.getAttribute("data-image-index"));
+        
+        if (!isNaN(index) && index >= 0 && index < allImages.length) {
+          openModal(index);
+        } else {
+          // Fallback: try to find by src
+          const clickedSrc = this.src;
+          const srcIndex = allImages.findIndex(imgData => imgData.src === clickedSrc);
+          if (srcIndex !== -1) {
+            openModal(srcIndex);
+          }
+        }
+      }, { passive: false });
+
+      // Touch feedback
+      newImg.addEventListener("touchstart", function() {
+        this.style.opacity = "0.8";
+        this.style.transform = "scale(0.98)";
+      }, { passive: true });
+
+      newImg.addEventListener("touchend", function() {
+        this.style.opacity = "1";
+        this.style.transform = "scale(1)";
+      }, { passive: true });
+
+      newImg.addEventListener("touchcancel", function() {
+        this.style.opacity = "1";
+        this.style.transform = "scale(1)";
+      }, { passive: true });
+    });
+  }
+
+  function setupDesktopImageInteractions() {
+    console.log("Setting up desktop image interactions...");
+
+    allImages.forEach((imageData) => {
+      const img = imageData.element;
+
+      img.style.cursor = "pointer";
+      img.setAttribute("tabindex", "0");
+      img.setAttribute("role", "button");
+      img.setAttribute("aria-label", `View ${img.alt} in larger detail`);
+
+      if (imageData.type === "painter") {
+        img.addEventListener("mouseenter", () => {
+          img.style.transform = "scale(1.02)";
+          img.style.transition = "transform 0.3s ease";
+        });
+
+        img.addEventListener("mouseleave", () => {
+          img.style.transform = "scale(1)";
+        });
+      } else if (imageData.type === "artwork") {
+        img.addEventListener("mouseenter", () => {
+          img.style.transform = "scale(1.01)";
+          img.style.opacity = "0.95";
+          img.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+        });
+
+        img.addEventListener("mouseleave", () => {
+          img.style.transform = "scale(1)";
+          img.style.opacity = "1";
+        });
+      }
+
+      img.addEventListener("click", function (e) {
+        console.log("Image clicked on desktop:", img.alt);
+        e.stopPropagation();
+        handleImageClick(this);
+      });
+    });
+  }
+
+  function handleImageClick(imgElement) {
+    console.log("handleImageClick called for:", imgElement.src);
+
+    if (isDesktop) {
+      imgElement.classList.add("image-clicked");
+      setTimeout(() => {
+        imgElement.classList.remove("image-clicked");
+      }, 600);
+    }
+
+    const clickedSrc = imgElement.src;
+    currentImageIndex = allImages.findIndex(
+      (imgData) => imgData.src === clickedSrc
+    );
+
+    console.log("Found at index:", currentImageIndex);
+
+    if (currentImageIndex !== -1) {
+      openModal(currentImageIndex);
+    }
+  }
+
   function openModal(index) {
     console.log("openModal called with index:", index);
 
@@ -673,12 +684,10 @@ function initImageModal() {
       modal.img.src = imageData.src;
       modal.img.alt = imageData.alt;
 
-      // Set caption
       let caption = "";
       if (imageData.type === "painter") {
         caption = `<strong>${imageData.title}</strong><br><br>${imageData.description}`;
       } else if (imageData.type === "artwork") {
-        // Extract data from the original DOM element instead
         const imgElement = imageData.element;
         const parent = imgElement.closest(".artwork-group, .carousel-slide");
         let artworkInfo = "";
@@ -698,19 +707,17 @@ function initImageModal() {
               infoElement.querySelector(".artwork-details")?.innerHTML || "";
 
             caption = `
-        <strong>${title}</strong><br>
-        <div style="margin-top: 5px">${details}</div>
-      `;
+              <strong>${title}</strong><br>
+              <div style="margin-top: 5px">${details}</div>
+            `;
           }
         } else {
-          // Fallback to original
           caption = `<strong>${imageData.title}</strong><br>${imageData.details}`;
         }
       }
 
       modal.caption.innerHTML = caption;
 
-      // Show modal
       modal.element.classList.add("active");
       modal.element.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
@@ -720,7 +727,6 @@ function initImageModal() {
         modal.img.style.opacity = "1";
         resetZoom();
 
-        // Focus close button for accessibility
         modal.close.focus();
       }, 300);
     };
@@ -755,17 +761,14 @@ function initImageModal() {
   function setupModalEvents() {
     console.log("Setting up modal events for all devices");
 
-    // Close modal
     modal.close.addEventListener("click", closeModal);
 
-    // Close on background click
     modal.element.addEventListener("click", (e) => {
       if (e.target === modal.element) {
         closeModal();
       }
     });
 
-    // Keyboard navigation (desktop)
     document.addEventListener("keydown", (e) => {
       if (!modal.element.classList.contains("active")) return;
 
@@ -851,45 +854,24 @@ function initImageModal() {
     `;
 
     document.body.insertAdjacentHTML("beforeend", modalHTML);
-
-    // Reinitialize with the new modal
     initImageModal();
   }
 
-  // Update on resize
+  // FIXED: Reset on resize to handle mobile/desktop switch
   window.addEventListener("resize", function () {
+    const wasDesktop = isDesktop;
     isDesktop = window.innerWidth > 1024;
-
-    // Re-setup interactions if needed
-    allImages.forEach((imageData) => {
-      const img = imageData.element;
-
+    
+    if (wasDesktop !== isDesktop) {
+      console.log("Viewport changed, reinitializing image modal...");
+      collectClickableImages();
+      
       if (isDesktop) {
-        // Re-add hover effects for desktop
-        img.style.cursor = "pointer";
-
-        if (imageData.type === "painter") {
-          img.onmouseenter = null;
-          img.onmouseleave = null;
-
-          img.addEventListener("mouseenter", () => {
-            img.style.transform = "scale(1.02)";
-            img.style.transition = "transform 0.3s ease";
-          });
-
-          img.addEventListener("mouseleave", () => {
-            img.style.transform = "scale(1)";
-          });
-        }
+        setupDesktopImageInteractions();
       } else {
-        // Remove hover effects for mobile
-        img.style.cursor = "pointer";
-        img.onmouseenter = null;
-        img.onmouseleave = null;
-        img.style.transform = "";
-        img.style.opacity = "";
+        setupMobileImageInteractions();
       }
-    });
+    }
   });
 
   console.log("Image modal initialization complete for all devices");

@@ -2700,6 +2700,7 @@ body::before {
   }
 
   .footer {
+    width: 100vw;
     flex-direction: column;
     justify-content: center;
     height: auto;
@@ -3087,3 +3088,4 @@ body::before {
     padding: 10px 14px;
   }
 }
+

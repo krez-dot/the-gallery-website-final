@@ -2151,83 +2151,459 @@ body::before {
 /* ===== RESPONSIVE STYLES ===== */
 
 /* Tablet (768px - 1024px) */
+/* ===== TABLET RESPONSIVE (768px - 1024px) ===== */
 @media (max-width: 1024px) and (min-width: 769px) {
+  /* Layout adjustments */
+  .page-container {
+    overflow-x: hidden;
+  }
+  
   .sidebar {
     width: var(--sidebar-width-tablet);
-    overflow: visible;
-    transform: translateX(-100%);
-    animation: slideInLeft 0.6s ease-out 0.2s forwards;
-  }
-
-  .sidebar.loaded {
     transform: translateX(0);
+    overflow: visible;
+    border-right: 1px solid var(--color-black);
+    padding-top: var(--spacing-lg);
   }
-
+  
   .main-content {
     margin-left: var(--sidebar-width-tablet);
     width: calc(100% - var(--sidebar-width-tablet));
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
   }
-
-  .nav-text {
+  
+  /* Compact sidebar navigation */
+  .sidebar-content {
+    padding: var(--spacing-md);
+  }
+  
+  .sidebar-title {
+    font-size: var(--font-size-sm);
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-xl);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
+    white-space: nowrap;
+    opacity: 1;
+    height: auto;
+  }
+  
+  .sidebar-divider {
     display: none;
   }
-
+  
   .nav-item {
     justify-content: center;
     padding: var(--spacing-md) var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    border-radius: var(--border-radius-md);
   }
-
+  
+  .nav-text {
+    display: none;
+  }
+  
   .nav-icon {
     margin-right: 0;
-    margin-bottom: 0;
+    width: 24px;
+    height: 24px;
   }
-
-  .sidebar-title {
-    font-size: var(--font-size-base);
-    text-align: center;
-    line-height: 40px;
-    margin-bottom: var(--spacing-sm);
+  
+  /* Adjust hero section */
+  .hero-section {
+    padding: var(--spacing-2xl) var(--spacing-lg);
+    min-height: auto;
   }
-
+  
+  .hero-image {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    margin-bottom: var(--spacing-xl);
+  }
+  
   .hero-title {
     font-size: var(--font-size-5xl);
+    line-height: 1.1;
+    margin-bottom: var(--spacing-lg);
+    padding: 0 var(--spacing-lg);
   }
-
-  .painters-title {
-    font-size: var(--font-size-6xl);
-  }
-
+  
   .hero-description {
     width: 90%;
+    max-width: 800px;
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+    padding: var(--spacing-lg);
   }
-
+  
+  /* Painters section adjustments */
+  .painters-section {
+    padding: var(--spacing-3xl) var(--spacing-lg);
+    min-height: auto;
+  }
+  
+  .painters-title {
+    font-size: var(--font-size-6xl);
+    margin-bottom: var(--spacing-2xl);
+  }
+  
+  .painters-container {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-3xl);
+  }
+  
   .painter-card {
     position: relative !important;
     top: auto !important;
     left: auto !important;
-    margin: var(--spacing-xl) auto;
-    width: 80%;
+    margin: 0;
+    width: 100%;
+    max-width: 400px;
+    opacity: 1 !important;
+    transform: none !important;
   }
-
-  .artwork-img,
-  .artwork-info {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    margin: var(--spacing-xl) 0;
+  
+  .painter-card.leonardo,
+  .painter-card.van-gogh,
+  .painter-card.monet {
+    position: relative;
+    left: auto;
+    top: auto;
   }
-
+  
+  .painter-card img {
+    height: 400px;
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  /* Art sections - convert to vertical layout */
+  .art-section-container {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    position: relative;
+  }
+  
   .contemporary-art,
   .modern-art,
   .renaissance-art,
   .photography {
-    min-height: auto;
+    min-height: auto !important;
+    padding: var(--spacing-3xl) 0;
+    height: auto !important;
+    margin-bottom: var(--spacing-3xl);
   }
-
+  
+  .section-title {
+    font-size: var(--font-size-5xl);
+    margin-bottom: var(--spacing-2xl);
+    line-height: 1.1;
+  }
+  
+  /* Stack artwork groups vertically */
+  .artwork-group {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    margin-bottom: var(--spacing-3xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .artwork-img {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 500px !important;
+    height: auto !important;
+    max-height: 400px !important;
+    object-fit: contain;
+    margin-bottom: var(--spacing-lg);
+    transform: none !important;
+    animation: none;
+  }
+  
+  .artwork-info {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 500px;
+    text-align: center;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  
+  /* Reset all specific positioning for tablet */
+  .artwork-group.julie,
+  .artwork-group.joan,
+  .artwork-group.julian,
+  .artwork-group.santiago,
+  .artwork-group.lethbridge,
+  .artwork-group.mark,
+  .artwork-group.josh,
+  .artwork-group.michael,
+  .artwork-group.richard,
+  .artwork-group.jan,
+  .artwork-group.raphael,
+  .artwork-group.jane,
+  .artwork-group.salvatore,
+  .artwork-group.elmer,
+  .artwork-group.remedios,
+  .artwork-group.jean,
+  .artwork-group.caravaggio-medusa,
+  .artwork-group.titian,
+  .artwork-group.leonardo-lady,
+  .artwork-group.caravaggio-supper,
+  .artwork-group.leonardo-ginevra,
+  .artwork-group.pieter,
+  .artwork-group.raphael-renaissance,
+  .artwork-group.caravaggio-cupid,
+  .artwork-group.lena,
+  .artwork-group.miles,
+  .artwork-group.emilie,
+  .artwork-group.igor,
+  .artwork-group.kristin {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    margin-bottom: var(--spacing-3xl);
+  }
+  
+  .artwork-info.julie,
+  .artwork-info.joan,
+  .artwork-info.julian,
+  .artwork-info.santiago,
+  .artwork-info.lethbridge,
+  .artwork-info.mark,
+  .artwork-info.josh,
+  .artwork-info.michael,
+  .artwork-info.richard,
+  .artwork-info.jan,
+  .artwork-info.raphael,
+  .artwork-info.jane,
+  .artwork-info.salvatore,
+  .artwork-info.elmer,
+  .artwork-info.remedios,
+  .artwork-info.jean,
+  .artwork-info.caravaggio-medusa,
+  .artwork-info.titian,
+  .artwork-info.leonardo-lady,
+  .artwork-info.caravaggio-supper,
+  .artwork-info.leonardo-ginevra,
+  .artwork-info.pieter,
+  .artwork-info.raphael-renaissance,
+  .artwork-info.caravaggio-cupid,
+  .artwork-info.lena,
+  .artwork-info.miles,
+  .artwork-info.emilie,
+  .artwork-info.igor,
+  .artwork-info.kristin {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 500px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  /* Section dividers */
+  .section-divider {
+    width: 80%;
+    margin: var(--spacing-2xl) auto;
+  }
+  
+  /* Footer adjustments */
+  .footer {
+    height: auto;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+  
+  .footer-logo {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .footer-copyright {
+    font-size: var(--font-size-sm);
+  }
+  
+  /* Hide desktop carousel containers, show mobile */
+  .painters-carousel-container,
+  .art-carousel-container {
+    display: none !important;
+  }
+  
   .painters-container,
   .art-section-container {
-    width: 95%;
-    height: auto;
+    display: block !important;
+  }
+  
+  /* Audio controls adjustments */
+  .audio-controls {
+    bottom: 25px;
+    right: 25px;
+  }
+  
+  .audio-expanded-panel {
+    min-width: 280px;
+    right: 0;
+  }
+  
+  /* Modal adjustments */
+  .modal-content {
+    max-width: 85%;
+    max-height: 80%;
+  }
+  
+  .modal-nav {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .modal-prev {
+    left: 15px;
+  }
+  
+  .modal-next {
+    right: 15px;
+  }
+  
+  /* Image click tooltip */
+  .click-tooltip {
+    top: 120px;
+    right: 30px;
+    font-size: var(--font-size-sm);
+  }
+  
+  /* Loading screen */
+  .loading-text {
+    font-size: var(--font-size-xl);
+  }
+  
+  /* Remove floating animations for performance */
+  .hero-image {
+    animation: zoomIn 1s ease-out 0.5s forwards;
+  }
+  
+  .artwork-img {
+    animation: none;
+  }
+}
+
+/* ===== TABLET LANDSCAPE ORIENTATION ===== */
+@media (max-width: 1024px) and (min-width: 769px) and (orientation: landscape) {
+  .hero-section {
+    min-height: 80vh;
+    padding: var(--spacing-3xl) var(--spacing-lg);
+  }
+  
+  .hero-image {
+    height: 350px;
+    max-height: 50vh;
+  }
+  
+  .painters-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-2xl);
+    max-width: 1000px;
+  }
+  
+  .painter-card {
+    max-width: 100%;
+  }
+  
+  .painter-card img {
+    height: 300px;
+  }
+  
+  /* Two-column layout for art sections */
+  .art-section-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-2xl);
+  }
+  
+  .artwork-group {
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .artwork-img {
+    max-height: 300px;
+  }
+}
+
+/* ===== TABLET PORTRAIT ORIENTATION ===== */
+@media (max-width: 1024px) and (min-width: 769px) and (orientation: portrait) {
+  .hero-title {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .painters-title,
+  .section-title {
+    font-size: var(--font-size-5xl);
+  }
+  
+  .hero-description {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+  }
+  
+  .painter-card img {
+    height: 350px;
+  }
+  
+  .artwork-img {
+    max-height: 350px;
+  }
+}
+
+/* ===== SMALL TABLET (769px - 900px) ===== */
+@media (max-width: 900px) and (min-width: 769px) {
+  .hero-title {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .painters-title,
+  .section-title {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .hero-description {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-lg);
+  }
+  
+  .painter-card img {
+    height: 320px;
+  }
+  
+  .artwork-img {
+    max-height: 300px;
+  }
+  
+  .audio-expanded-panel {
+    min-width: 260px;
   }
 }
 
@@ -2331,7 +2707,6 @@ body::before {
     text-align: center;
     gap: var(--spacing-sm);
     margin-top: var(--spacing-xl);
-    width: 430px;
   }
 
   .footer-logo {
@@ -2478,6 +2853,9 @@ body::before {
     padding: var(--spacing-xs) var(--spacing-md);
     bottom: 15px;
     margin-bottom: -50px;
+  }
+  body {
+    overflow-x: hidden;
   }
 }
 
@@ -2700,5 +3078,3 @@ body::before {
     padding: 10px 14px;
   }
 }
-
-

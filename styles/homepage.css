@@ -2479,7 +2479,7 @@ body::before {
     bottom: 15px;
     margin-bottom: -50px;
   }
-  * {
+  body {
     overflow-x: hidden;
   }
 }
@@ -2703,3 +2703,4 @@ body::before {
     padding: 10px 14px;
   }
 }
+
